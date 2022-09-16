@@ -11,7 +11,7 @@ import { UserAccessService } from './user-access.service';
 import { CreateUserAccessDto } from './dto/create-user-access.dto';
 import { UpdateUserAccessDto } from './dto/update-user-access.dto';
 
-@Controller('user-access')
+@Controller()
 export class UserAccessController {
   constructor(private readonly userAccessService: UserAccessService) {}
 

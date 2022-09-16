@@ -1,5 +1,3 @@
-import { BaseEntity } from '@/commons/base.entity';
-import { RoleEntity } from '@/modules/role/entities/role.entity';
 import {
   Column,
   Entity,
@@ -7,6 +5,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { BaseEntity } from '../../../commons/base.entity';
+import { RoleEntity } from '../../role/entities/role.entity';
 
 @Entity({ name: 'UserAccesses' })
 export class UserAccessEntity extends BaseEntity {
@@ -27,4 +27,13 @@ export class UserAccessEntity extends BaseEntity {
 
   @Column({ type: 'boolean', default: true })
   status: boolean;
+
+  @Column({ type: 'int' })
+  role_id: number;
+
+  @ManyToOne(() => RoleEntity, (role) => role.id, {
+    createForeignKeyConstraints: false,
+  })
+  @JoinColumn({ name: 'role_id' })
+  role: RoleEntity;
 }
